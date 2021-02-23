@@ -37,7 +37,7 @@ var images = [];
 var drawFunction;
 
 // offset from bottom of screen
-var gTextOffset = 20;
+let capture;
 
 // load all images into an array
 function preload() {
@@ -47,6 +47,8 @@ function preload() {
   images[3] = loadImage('assets/kitchen.PNG');
   images[4] = loadImage('assets/bath.PNG');
   images[5] = loadImage('assets/pool.PNG');
+  images[6] = loadImage('assets/mirror.PNG');
+
 
 }
 
@@ -58,6 +60,11 @@ function setup() {
   imageMode(CENTER);
   textAlign(CENTER);
   textSize(24);
+
+  //creating capture
+  capture = createCapture(VIDEO);
+  capture.size(800, 600);
+  capture.hide();
 
   // set to one for startup
   drawFunction = drawOne;
@@ -155,6 +162,11 @@ drawFour = function() {
 drawFive = function() {
    image(images[4],width/2, height/2);
 
+   // look at mirror
+    if( key === 'm' ) {
+      drawFunction = drawSeven;
+  }
+
     // click back to pool
     if (mouseIsPressed){
       if (mouseX >= 570 && mouseX <= 800){
@@ -187,6 +199,18 @@ drawSix = function() {
         if(mouseY >= 100 && mouseY <= 330){
             drawFunction = drawOne;
         }
+      }
+    }
+}
+
+drawSeven = function() {
+    image(capture, width/2, height/2,800,600);
+    image(images[6],width/2, height/2);
+
+    // click back to bathroom
+    if (keyIsPressed){
+      if (keyCode === BACKSPACE){
+        drawFunction = drawFive;
       }
     }
 }
