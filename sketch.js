@@ -30,7 +30,6 @@
 
 
 ***********************************************************************************/
-
 // Array of images
 var images = [];
 
@@ -42,11 +41,13 @@ var gTextOffset = 20;
 
 // load all images into an array
 function preload() {
-  images[0] = loadImage('assets/anger.PNG');
-  images[1] = loadImage('assets/ill.PNG');
-  images[2] = loadImage('assets/sleepy.PNG');
-  images[3] = loadImage('assets/stressed.PNG');
-  images[4] = loadImage('assets/vibe.PNG');
+  images[0] = loadImage('assets/living.PNG');
+  images[1] = loadImage('assets/bed.PNG');
+  images[2] = loadImage('assets/comp.PNG');
+  images[3] = loadImage('assets/kitchen.PNG');
+  images[4] = loadImage('assets/bath.PNG');
+  images[5] = loadImage('assets/pool.PNG');
+
 }
 
 // Center drawing, drawFunction will be one for default
@@ -65,6 +66,7 @@ function setup() {
 // Very simple, sets the background color and calls your state machine function
 function draw() {
   background(192);
+  drawDebugInfo();
 
   // will call your state machine function
   drawFunction();
@@ -72,7 +74,7 @@ function draw() {
 
 //========= TEMPLATE: modify these functions, INSIDE the function blocks only =========
 
-//-- drawOne() will draw the image at index 0 from the array
+//-- drawOne() will draw the image at index 0 from the array. LIVING ROOM
 drawOne = function() {
    image(images[0],width/2, height/2);
 
@@ -80,7 +82,7 @@ drawOne = function() {
    text("anger", width/2, height - gTextOffset);
 }
 
-//-- drawTwo() will draw the image at index 1 from the array
+//-- drawTwo() will draw the image at index 1 from the array. BEDROOM
 drawTwo = function() {
    image(images[1],width/2, height/2);
 
@@ -88,25 +90,40 @@ drawTwo = function() {
    text("ill", width/2, height - gTextOffset);
 }
 
-//-- drawOne() will draw the image at index 2 from the array
+//-- drawOne() will draw the image at index 2 from the array. COMPUTER
 drawThree = function() {
    image(images[2],width/2, height/2);
 
-   fill(40,230,120);
-   text("sleepy", width/2, height - gTextOffset);
+    if (keyIsPressed){
+      if (keyCode === ESCAPE){
+        drawFunction = drawTwo;
+      }
+    }
 }
 
-//-- drawOne() will draw the image at index 3 from the array
+//-- drawOne() will draw the image at index 3 from the array. KITCHEN
 drawFour = function() {
    image(images[3],width/2, height/2);
+   if (mouseIsPressed){
+      if (mouseX >= 845 && mouseX <= 940){
+          if(mouseY >= 400 && mouseY <= 540){
+            drawFunction = drawOne;
+          }
+      }
+    }
+ }
 
-   fill(255,255,178);
-   text("stressed", width/2, height - gTextOffset);
-}
-
-//-- drawOne() will draw the image at index 4 from the array
+//-- drawOne() will draw the image at index 4 from the array. BATHROOM
 drawFive = function() {
    image(images[4],width/2, height/2);
+
+   fill(230,50,50);
+   text("vibing", width/2, height - gTextOffset);
+}
+
+//-- drawOne() will draw the image at index 5 from the array. POOL
+drawSix = function() {
+   image(images[5],width/2, height/2);
 
    fill(230,50,50);
    text("vibing", width/2, height - gTextOffset);
@@ -132,4 +149,12 @@ function keyTyped() {
   else if( key === '5' ) {
   	drawFunction = drawFive;
   }
+  else if( key === '6' ) {
+    drawFunction = drawSix;
+  }
+}
+
+function drawDebugInfo() {
+  fill(255);
+  text("x: "+ mouseX + " y: " + mouseY, 100, height-2);
 }
