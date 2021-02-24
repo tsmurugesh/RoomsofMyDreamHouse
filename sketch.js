@@ -218,29 +218,7 @@ drawSeven = function() {
 
 //========= TEMPLATE: add or change interface functions, as you like =========
 
-// Change the drawFunction variable based on your interaction
-// function keyTyped() {
-//   if( key === '1' ) {
-//   	drawFunction = drawOne;
-//   }
-//   else if( key === '2' ) {
-//   	drawFunction = drawTwo;
-//   }
-//   else if( key === '3' ) {
-//   	drawFunction = drawThree;
-//   }
-//   else if( key === '4' ) {
-//   	drawFunction = drawFour;
-//   }
-//   else if( key === '5' ) {
-//   	drawFunction = drawFive;
-//   }
-//   else if( key === '6' ) {
-//     drawFunction = drawSix;
-//   }
+// function drawDebugInfo() {
+//   fill("red");
+//   text("x: "+ mouseX + " y: " + mouseY, 100, height-2);
 // }
-
-function drawDebugInfo() {
-  fill("red");
-  text("x: "+ mouseX + " y: " + mouseY, 100, height-2);
-}
