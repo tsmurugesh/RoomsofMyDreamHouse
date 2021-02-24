@@ -1,6 +1,5 @@
 /***********************************************************************************
-	SimpleStateMachine - TEMPLATE
-	by Scott Kildall
+Rooms of my dream house	by Tanvi Murugesh
 
 	Template:
 
@@ -11,11 +10,10 @@
 	Also start your localhost before running this, otherwise no PNGs will display
 
 ------------------------------------------------------------------------------------
-	The way it works — you don't need to know this for the template use
+	The way it works — 
 	* array of images gets loaded at startup
 	* drawFunction is a VARIABLE that points to a function varible name
 	* drawOne(), drawTwo(), etc. are set to be functions.
-	* the the keys 1-5 will change the drawFunction variable
 
 ------------------------------------------------------------------------------------
 	Notes:
