@@ -36,7 +36,7 @@ var images = [];
 // variable that is a function 
 var drawFunction;
 
-// offset from bottom of screen
+// set up video capture
 let capture;
 
 // load all images into an array
@@ -48,8 +48,6 @@ function preload() {
   images[4] = loadImage('assets/bath.PNG');
   images[5] = loadImage('assets/pool.PNG');
   images[6] = loadImage('assets/mirror.PNG');
-
-
 }
 
 // Center drawing, drawFunction will be one for default
@@ -61,7 +59,7 @@ function setup() {
   textAlign(CENTER);
   textSize(24);
 
-  //creating capture
+  // creating capture
   capture = createCapture(VIDEO);
   capture.size(800, 600);
   capture.hide();
@@ -72,11 +70,12 @@ function setup() {
 
 // Very simple, sets the background color and calls your state machine function
 function draw() {
-  background(192);
+  background(0);
+
   // will call your state machine function
   drawFunction();
 
-  drawDebugInfo();
+  //drawDebugInfo();
 
 }
 
@@ -84,25 +83,25 @@ function draw() {
 
 //-- drawOne() will draw the image at index 0 from the array. LIVING ROOM
 drawOne = function() {
-   image(images[0],width/2, height/2);
+   image(images[0], width/2, height/2);
 
    //press ENTER to go to bedroom
-   if (keyIsPressed){
-      if (keyCode === ENTER){
+   if ( keyIsPressed ){
+      if ( keyCode === ENTER ){
         drawFunction = drawTwo;
       }
     }
 
-    // click to kitchen
-    if (mouseIsPressed){
-      if (mouseX >= 75 && mouseX <= 125){
-        if(mouseY >= 90 && mouseY <= 160){
+    // click mouse to kitchen
+    if ( mouseIsPressed ){
+      if ( mouseX >= 75 && mouseX <= 125 ){
+        if( mouseY >= 90 && mouseY <= 160 ){
             drawFunction = drawFour;
         }
       }
       // click sign to pool
-      else if (mouseX >= 615 && mouseX <= 730){
-        if(mouseY >= 0 && mouseY <= 60){
+      else if ( mouseX >= 615 && mouseX <= 730 ){
+        if( mouseY >= 0 && mouseY <= 60 ){
             drawFunction = drawSix;
         }
       }
@@ -111,24 +110,24 @@ drawOne = function() {
 
 //-- drawTwo() will draw the image at index 1 from the array. BEDROOM
 drawTwo = function() {
-   image(images[1],width/2, height/2);
+   image(images[1], width/2, height/2);
 
    //pressing backspace takes you to the living room
-   if (keyIsPressed){
-      if (keyCode === BACKSPACE){
+   if ( keyIsPressed ){
+      if ( keyCode === BACKSPACE ){
         drawFunction = drawOne;
       }
     }
 
     //clicking on the monitor takes you to the computer room
-    if (mouseIsPressed){
-      if (mouseX >= 0 && mouseX <= 105){
-        if(mouseY >= 205 && mouseY <= 290){
+    if ( mouseIsPressed ){
+      if ( mouseX >= 0 && mouseX <= 105 ){
+        if( mouseY >= 205 && mouseY <= 290 ){
             drawFunction = drawThree;
         }
       }
-      else if (mouseX >= 600 && mouseX <= 800){
-        if(mouseY >= 390 && mouseY <= 460){
+      else if ( mouseX >= 600 && mouseX <= 800 ){
+        if( mouseY >= 390 && mouseY <= 460 ){
             drawFunction = drawFive;
         }
       }
@@ -137,10 +136,10 @@ drawTwo = function() {
 
 //-- drawOne() will draw the image at index 2 from the array. COMPUTER
 drawThree = function() {
-   image(images[2],width/2, height/2);
+   image(images[2], width/2, height/2);
 
-    if (keyIsPressed){
-      if (keyCode === ESCAPE){
+    if ( keyIsPressed ){
+      if ( keyCode === ESCAPE ){
         drawFunction = drawTwo;
       }
     }
@@ -148,10 +147,10 @@ drawThree = function() {
 
 //-- drawOne() will draw the image at index 3 from the array. KITCHEN
 drawFour = function() {
-   image(images[3],width/2, height/2);
-   if (mouseIsPressed){
-      if (mouseX >= 560 && mouseX <= 650){
-        if(mouseY >= 320 && mouseY <= 440){
+   image(images[3], width/2, height/2);
+   if ( mouseIsPressed ){
+      if ( mouseX >= 560 && mouseX <= 650 ){
+        if( mouseY >= 320 && mouseY <= 440){
             drawFunction = drawOne;
         }
       }
@@ -160,7 +159,7 @@ drawFour = function() {
 
 //-- drawOne() will draw the image at index 4 from the array. BATHROOM
 drawFive = function() {
-   image(images[4],width/2, height/2);
+   image(images[4], width/2, height/2);
 
    // look at mirror
     if( key === 'm' ) {
@@ -168,15 +167,15 @@ drawFive = function() {
   }
 
     // click back to pool
-    if (mouseIsPressed){
-      if (mouseX >= 570 && mouseX <= 800){
-        if(mouseY >= 480 && mouseY <= 600){
+    if ( mouseIsPressed ){
+      if ( mouseX >= 570 && mouseX <= 800 ){
+        if( mouseY >= 480 && mouseY <= 600 ){
             drawFunction = drawSix;
         }
       }
       // click back to bedroom
-      else if (mouseX >= 0 && mouseX <= 80){
-        if(mouseY >= 250 && mouseY <= 460){
+      else if ( mouseX >= 0 && mouseX <= 80 ){
+        if( mouseY >= 250 && mouseY <= 460 ){
             drawFunction = drawTwo;
         }
       }
@@ -185,31 +184,32 @@ drawFive = function() {
 
 //-- drawOne() will draw the image at index 5 from the array. POOL
 drawSix = function() {
-   image(images[5],width/2, height/2);
+   image(images[5], width/2, height/2);
 
     // click back to bathroom
-    if (mouseIsPressed){
-      if (mouseX >= 560 && mouseX <= 700){
-        if(mouseY >= 110 && mouseY <= 330){
+    if ( mouseIsPressed ){
+      if ( mouseX >= 560 && mouseX <= 700 ){
+        if( mouseY >= 110 && mouseY <= 330 ){
             drawFunction = drawFive;
         }
       }
       // click back to living room
-      else if (mouseX >= 70 && mouseX <= 200){
-        if(mouseY >= 100 && mouseY <= 330){
+      else if ( mouseX >= 70 && mouseX <= 200 ){
+        if( mouseY >= 100 && mouseY <= 330 ){
             drawFunction = drawOne;
         }
       }
     }
 }
 
+//-- drawOne() will draw the image at index 6 from the array. BATHROOM MIRROR
 drawSeven = function() {
-    image(capture, width/2, height/2,800,600);
-    image(images[6],width/2, height/2);
+    image(capture, width/2, height/2, 800, 600);
+    image(images[6], width/2, height/2);
 
     // click back to bathroom
-    if (keyIsPressed){
-      if (keyCode === BACKSPACE){
+    if ( keyIsPressed ){
+      if ( keyCode === BACKSPACE ){
         drawFunction = drawFive;
       }
     }
@@ -219,26 +219,26 @@ drawSeven = function() {
 //========= TEMPLATE: add or change interface functions, as you like =========
 
 // Change the drawFunction variable based on your interaction
-function keyTyped() {
-  if( key === '1' ) {
-  	drawFunction = drawOne;
-  }
-  else if( key === '2' ) {
-  	drawFunction = drawTwo;
-  }
-  else if( key === '3' ) {
-  	drawFunction = drawThree;
-  }
-  else if( key === '4' ) {
-  	drawFunction = drawFour;
-  }
-  else if( key === '5' ) {
-  	drawFunction = drawFive;
-  }
-  else if( key === '6' ) {
-    drawFunction = drawSix;
-  }
-}
+// function keyTyped() {
+//   if( key === '1' ) {
+//   	drawFunction = drawOne;
+//   }
+//   else if( key === '2' ) {
+//   	drawFunction = drawTwo;
+//   }
+//   else if( key === '3' ) {
+//   	drawFunction = drawThree;
+//   }
+//   else if( key === '4' ) {
+//   	drawFunction = drawFour;
+//   }
+//   else if( key === '5' ) {
+//   	drawFunction = drawFive;
+//   }
+//   else if( key === '6' ) {
+//     drawFunction = drawSix;
+//   }
+// }
 
 function drawDebugInfo() {
   fill("red");
